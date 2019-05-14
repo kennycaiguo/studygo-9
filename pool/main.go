@@ -7,14 +7,11 @@ import (
 
 var maxWorkers = 20
 
+// JobQueue 作业队列
+var JobQueue = make(chan Job, maxWorkers)
+
 func init() {
-	// 创建工人池
-	//pool := make(chan chan Job, maxWorkers)
-	// 创建一定数量的工人
-	for i := 0; i < maxWorkers; i++ {
-
-	}
-
+	InitPool()
 }
 
 func main() {
@@ -23,6 +20,10 @@ func main() {
 }
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
+	service := MyService{}
+	//service.WriteInfo()
+	work := Job{MyService: service}
+	JobQueue <- work
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	result := "{\"msg\":\"SUCCESS\",\"code\":0}"
 	fmt.Fprintln(w, result)
