@@ -32,11 +32,11 @@ func main() {
 
 func sliceStr(str string) string {
 	if str != "" {
-		indexMethod := strings.Index(str, "updateStatus?")
-		indexStatus := strings.Index(str, "MANUAL_CHECKED")
-		indexAdmIDIss := strings.Index(str, "&admIdIss=1")
+		indexMethod := strings.Index(str, "&reviewTime=2019-06-11")
+		//indexStatus := strings.Index(str, "MANUAL_CHECKED")
+		indexAdmIDIss := strings.Index(str, "&admIdIss=2&applyParam=")
 
-		if indexMethod != -1 && indexStatus != -1 && indexAdmIDIss != -1 {
+		if indexMethod != -1 && indexAdmIDIss != -1 {
 			return str
 		}
 	}
